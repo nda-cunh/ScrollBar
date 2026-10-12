@@ -167,7 +167,7 @@ def Update()
 			wrap: false,
 			filter: ElevatorFilter,
 			filtermode: 'a',
-			opacity: 50,
+			opacity: 70,
 			highlight: g:scrollbar_track_highlight,
 		})
 	else
