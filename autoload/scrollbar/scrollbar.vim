@@ -103,6 +103,22 @@ def Hide()
 	endif
 enddef
 
+def Resize()
+	if state.popup_id != 0
+		var geo = Geometry(state.winid)
+		if !empty(geo)
+			popup_settext(state.popup_id, [])
+			popup_move(state.popup_id, {
+				line: geo.line,
+				col: geo.col,
+				minheight: geo.winheight,
+				maxheight: geo.winheight,
+			})
+		endif
+	endif
+enddef
+
+
 def Update()
 	const winid = win_getid()
 
@@ -170,6 +186,7 @@ export def Enable()
 		autocmd CursorMoved,CursorMovedI * call Update()
 		autocmd TextChanged,TextChangedI * call Update()
 		autocmd WinLeave,BufWinLeave * call Hide()
+		autocmd VimResized * call Resize()
 	augroup END
 	Update()
 enddef
