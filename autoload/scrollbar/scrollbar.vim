@@ -122,7 +122,7 @@ enddef
 def Update()
 	const winid = win_getid()
 
-	if win_gettype(winid) != ''
+	if win_gettype(winid) != '' || getwinvar(winid, '&buftype') == 'terminal'
 		Hide()
 		return
 	endif
@@ -166,7 +166,7 @@ def Update()
 			zindex: g:scrollbar_zindex,
 			wrap: false,
 			filter: ElevatorFilter,
-			filtermode: 'a',
+			filtermode: 'nvi',
 			opacity: 70,
 			highlight: g:scrollbar_track_highlight,
 		})
